@@ -2058,11 +2058,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\7Mojos\\MessageHistoryAPI\\MessageHistoryAPI\\MessageHistoryAPI\\MessageHistoryAPI.csproj",
+      "projectUniqueName": "E:\\GitHubRepo\\MessageHistoryApi\\MessagesAPI\\MessageHistoryAPI\\MessageHistoryAPI.csproj",
       "projectName": "MessageHistoryAPI",
-      "projectPath": "E:\\7Mojos\\MessageHistoryAPI\\MessageHistoryAPI\\MessageHistoryAPI\\MessageHistoryAPI.csproj",
+      "projectPath": "E:\\GitHubRepo\\MessageHistoryApi\\MessagesAPI\\MessageHistoryAPI\\MessageHistoryAPI.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "E:\\7Mojos\\MessageHistoryAPI\\MessageHistoryAPI\\MessageHistoryAPI\\obj\\",
+      "outputPath": "E:\\GitHubRepo\\MessageHistoryApi\\MessagesAPI\\MessageHistoryAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

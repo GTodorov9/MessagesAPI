@@ -5,10 +5,15 @@ namespace MessageHistoryAPI
 {
     public class MessageDBContext : DbContext
     {
+        private readonly IConfiguration _configuration;
+        public MessageDBContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public DbSet<Message> Messages { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ChatDatabase;Username=postgres;Password=123456;");
+            optionsBuilder.UseNpgsql(_configuration["ConnectionString"]);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -2,6 +2,7 @@ using MessageHistoryAPI.BindingModels;
 using MessageHistoryAPI.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace MessageHistoryAPI.Controllers
 {
@@ -9,6 +10,11 @@ namespace MessageHistoryAPI.Controllers
 
     public class MessageController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
+        public MessageController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         [HttpPost]
         [Route("api/Message/SaveMessages")]
         public ActionResult SaveMessages([FromBody] SaveMessagesBindingModel bindingModel)
@@ -23,7 +29,7 @@ namespace MessageHistoryAPI.Controllers
                     TimeStamp = e.TimeStamp
                 }).ToList();
 
-                using (var dbContext = new MessageDBContext())
+                using (var dbContext = new MessageDBContext(_configuration))
                 {
                     dbContext.Messages.AddRange(dbMessages);
                     dbContext.SaveChanges();
@@ -41,7 +47,7 @@ namespace MessageHistoryAPI.Controllers
         [Route("api/Message/GetMessagesReport")]
         public ActionResult GetMessagesReport(DateTime fromDate, DateTime toDate)
         {
-            using (var dbContext = new MessageDBContext())
+            using (var dbContext = new MessageDBContext(_configuration))
             {
                 var stats = dbContext.Messages
             .GroupBy(m => 1)
@@ -72,7 +78,7 @@ namespace MessageHistoryAPI.Controllers
         [Route("api/Message/GetMessagesForUsers")]
         public ActionResult GetMessagesForUsers(string fromUserId, string toUserId)
         {
-            using (var dbContext = new MessageDBContext())
+            using (var dbContext = new MessageDBContext(_configuration))
             {
                 var msgs = dbContext.Messages.Where(e =>
                     (e.ToUser_Id == toUserId && e.FromUser_Id == fromUserId)
